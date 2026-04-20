@@ -3,286 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahniah Tuan Mohammad Nizam - DVS</title>
-    <!-- Font Montserrat (Corporate), Playfair (Serif), dan Great Vibes (Calligraphy) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Playfair+Display:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>Video Hebahan DVS - Tuan Nizam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #d4af37;
             --dvs-blue: #001a33;
-            --ms-red: #cc0000;
             --ms-yellow: #ffcc00;
-            --ms-blue: #000066;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html {
-            height: 100vh;
-            width: 100vw;
+            height: 100vh; width: 100vw;
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--dvs-blue);
+            background: radial-gradient(circle at center, #003366 0%, #000a1a 100%);
             color: white;
         }
 
-        /* 1. JATA NEGARA BACKGROUND WATERMARK */
+        /* WATERMARK */
         .bg-watermark {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 75vh;
-            height: 75vh;
+            position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%);
+            width: 85vh; height: 85vh;
             background: url('https://upload.wikimedia.org/wikipedia/commons/2/26/Coat_of_arms_of_Malaysia.svg') no-repeat center;
-            background-size: contain;
-            opacity: 0.05;
-            z-index: 0;
-            pointer-events: none;
+            background-size: contain; opacity: 0.03; z-index: 0;
         }
 
-        /* 2. JALUR WARNA BERGERAK (WIND EFFECT) */
-        .wind-fx { position: absolute; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .stripe {
-            position: absolute; height: 3px; opacity: 0.2; filter: blur(3px);
-            animation: moveStripes 12s infinite linear;
+        /* HEADER LOGOS */
+        header {
+            position: absolute; top: 2vh; left: 3vw; right: 3vw;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100; opacity: 0;
         }
-        @keyframes moveStripes {
-            0% { transform: translateX(-100%) skewX(-45deg); }
-            100% { transform: translateX(250%) skewX(-45deg); }
+        .header-animate { animation: fadeInDown 1.5s ease forwards 0.5s; }
+        .logo-group img { height: 6.5vh; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
+
+        /* MAIN CONTENT */
+        main {
+            display: flex; width: 100%; height: 100vh;
+            align-items: center; justify-content: center;
+            padding: 4vh 2vw 2vh 2vw; gap: 20px; z-index: 10;
         }
 
-        /* 3. LOGO HEADER */
-        .header-logos {
-            position: absolute;
-            top: 3vh;
-            left: 5vw;
-            right: 5vw;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-        .logo-group { display: flex; gap: 30px; align-items: center; }
-        .logo-group img { height: clamp(40px, 7vh, 70px); filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
-
-        /* 4. MAIN LAYOUT (FLEX) */
-        .container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            padding: 12vh 5vw 5vh 5vw;
-            align-items: center;
-        }
-
-        /* KIRI: GAMBAR PEGAWAI BESAR */
-        .left-panel {
-            flex: 1.2; /* Lebih besar dari teks */
-            display: flex;
-            justify-content: flex-start;
-            height: 75vh;
-            animation: revealLeft 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-        }
-
+        /* PHOTO SECTION */
+        .photo-side { height: 85vh; flex: 0 0 auto; opacity: 0; }
+        .photo-animate { animation: fadeInLeft 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards 1.5s; }
         .gold-frame {
-            position: relative;
-            height: 100%;
-            aspect-ratio: 3.5 / 4.8;
-            border: 12px solid var(--gold);
-            background: #000;
-            padding: 10px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.2);
+            position: relative; height: 100%; aspect-ratio: 3.5 / 5;
+            border: 1vh solid var(--gold); background: #000; padding: 0.5vh;
+            box-shadow: 25px 0 60px rgba(0,0,0,0.8);
         }
-
-        /* Kesan Cahaya pada Frame */
+        .gold-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .gold-frame::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transform: skewX(-25deg); animation: shine 6s infinite;
         }
 
-        .gold-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(1.05); }
-
-        /* KANAN: KANDUNGAN TEKS */
-        .right-panel {
-            flex: 1;
-            padding-left: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
+        /* TEXT SECTION */
+        .text-side { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 10px; }
+        .tahniah-cursive {
+            font-family: 'Great Vibes', cursive; font-size: clamp(6rem, 13vh, 10.5rem);
+            color: var(--gold); line-height: 0.5; margin-bottom: 1.5vh;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.8); opacity: 0;
         }
+        .tahniah-animate { animation: zoomInFade 2s ease forwards 3.5s; }
 
-        /* TULISAN TAHNIAH CALLIGRAPHY */
-        .calligraphy-tahniah {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(4rem, 8vh, 6.5rem);
-            color: var(--gold);
-            margin-bottom: -15px;
-            line-height: 1;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            animation: fadeIn 1.2s ease forwards 0.5s; opacity: 0;
-        }
-
-        .sub-header {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vh, 2.8rem);
-            color: white;
-            margin-bottom: 25px;
-            animation: fadeIn 1.2s ease forwards 0.7s; opacity: 0;
-        }
-
-        /* INFO BOX */
         .info-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(15px);
-            border-left: 6px solid var(--gold);
-            padding: 30px;
-            border-radius: 0 20px 20px 0;
-            box-shadow: 20px 20px 40px rgba(0,0,0,0.3);
-            animation: revealBox 1s ease forwards 1s; opacity: 0;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px);
+            border-left: 1.4vh solid var(--gold); padding: 2vh 3vw;
+            border-radius: 0 25px 25px 0; opacity: 0;
         }
+        .card-animate { animation: revealRight 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards 5s; }
 
-        .officer-name { font-size: clamp(1.4rem, 2.5vh, 1.9rem); font-weight: 800; color: var(--ms-yellow); margin-bottom: 5px; }
-        .current-rank { font-size: 1rem; color: #ccc; margin-bottom: 25px; font-weight: 300; }
-        
-        .promo-details { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        .promo-label { color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
-        .new-rank { font-size: clamp(1.1rem, 2.2vh, 1.5rem); font-weight: 700; color: #fff; line-height: 1.3; }
-        .dept-info { font-size: 0.95rem; color: #ddd; margin-top: 8px; line-height: 1.4; }
-        .effective-date { color: var(--gold); font-weight: 800; margin-top: 15px; display: block; font-size: 1rem; }
+        .reveal-up { opacity: 0; transform: translateY(40px); }
+        .animate-up-1 { animation: fadeInUp 1.2s ease forwards 6.5s; }
+        .animate-up-2 { animation: fadeInUp 1.2s ease forwards 7.5s; }
+        .animate-up-3 { animation: fadeInUp 1.2s ease forwards 8.5s; }
+        .animate-up-4 { animation: fadeInUp 1.2s ease forwards 10s; }
 
-        .wishes {
-            margin-top: 30px; font-style: italic; font-size: 0.9rem; color: #eee; line-height: 1.6;
-            animation: fadeIn 1s ease forwards 1.4s; opacity: 0;
-        }
+        .name { font-size: clamp(2rem, 4.2vh, 4.2rem); font-weight: 900; color: var(--ms-yellow); line-height: 1.1; margin-bottom: 0.5vh; text-transform: uppercase; }
+        .rank-old { font-size: 2.8vh; color: #efefef; font-weight: 600; margin-bottom: 2vh; }
+        .promo-section { border-top: 3px solid var(--gold); padding-top: 1.5vh; }
+        .label-promo { color: var(--gold); font-size: 2.2vh; font-weight: 800; text-transform: uppercase; }
+        .new-rank { font-size: clamp(1.8rem, 5vh, 5rem); font-weight: 900; color: #fff; margin: 0.8vh 0; }
+        .dept { font-size: 3vh; color: #fff; line-height: 1.3; font-weight: 600; }
+        .date { color: var(--gold); font-weight: 900; font-size: 3vh; margin-top: 1vh; display: block; }
+        .wishes { margin-top: 2.5vh; font-style: italic; font-size: 2.8vh; color: #fff; line-height: 1.4; border-left: 5px solid rgba(255,255,255,0.4); padding-left: 15px; margin-bottom: 2vh; }
+        .footer { font-size: 2.2vh; font-weight: 800; color: rgba(255,255,255,0.9); }
 
-        .footer-sig {
-            margin-top: 25px; font-size: 0.75rem; opacity: 0.7; letter-spacing: 1px;
-            animation: fadeIn 1s ease forwards 1.7s; opacity: 0;
-        }
-
-        /* START OVERLAY (UNTUK AUDIO) */
-        #start-overlay {
+        /* OVERLAY CONTROL */
+        #controls {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #001a33 0%, #00050a 100%); z-index: 1000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: #000; z-index: 2000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
         }
-        #btn-start {
+        .btn {
             background: none; border: 2px solid var(--gold); color: var(--gold);
-            padding: 15px 45px; font-size: 1.2rem; cursor: pointer; border-radius: 5px;
-            font-weight: 700; transition: 0.4s; letter-spacing: 3px;
+            padding: 20px 40px; font-size: 1.2rem; cursor: pointer; font-weight: bold;
+            margin: 10px; transition: 0.3s;
         }
-        #btn-start:hover { background: var(--gold); color: black; box-shadow: 0 0 30px var(--gold); transform: scale(1.05); }
+        .btn:hover { background: var(--gold); color: #000; }
 
-        /* ANIMATIONS */
+        /* ANIMATIONS KEYFRAMES */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-80px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes revealRight { from { opacity: 0; transform: scaleX(0); transform-origin: left; } to { opacity: 1; transform: scaleX(1); } }
+        @keyframes zoomInFade { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
         @keyframes shine { 0% { left: -100%; } 20% { left: 150%; } 100% { left: 150%; } }
-        @keyframes revealLeft { from { opacity: 0; transform: translateX(-120px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes revealBox { from { opacity: 0; transform: scaleX(0); transform-origin: left; } to { opacity: 1; transform: scaleX(1); } }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .container { flex-direction: column; overflow-y: auto; padding-top: 15vh; }
-            .left-panel { flex: none; height: 45vh; width: 100%; justify-content: center; margin-bottom: 30px; }
-            .right-panel { flex: none; padding-left: 0; text-align: center; }
-            .info-card { border-left: none; border-top: 5px solid var(--gold); border-radius: 20px; }
-            .calligraphy-tahniah { font-size: 4rem; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Tombol Mula (Cinematic Trigger) -->
-    <div id="start-overlay">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Coat_of_arms_of_Malaysia.svg" style="height: 120px; margin-bottom: 30px; opacity: 0.8;">
-        <button id="btn-start">SAKSIKAN HEBAHAN</button>
+    <div id="controls">
+        <h2 style="color:var(--gold); margin-bottom:20px;">PILIHAN PAPARAN</h2>
+        <button class="btn" onclick="startShow()">1. LIHAT SAHAJA (PREVIEW)</button>
+        <button class="btn" style="border-color:#ff4444; color:#ff4444;" onclick="startRecording()">2. RAKAM & DOWNLOAD MP4/WEBM</button>
+        <p style="font-size:0.8rem; margin-top:20px; opacity:0.6;">Nota: Untuk rakaman, anda perlu pilih 'This Tab' apabila diminta.</p>
     </div>
 
-    <!-- SFX Audio -->
-    <audio id="cinematic-sfx" preload="auto">
-        <!-- Sila gantikan URL ini dengan fail SFX Cinematic Whoosh/Fanfare anda -->
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="sfx"><source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg"></audio>
 
-    <!-- Background Watermark Jata Negara -->
     <div class="bg-watermark"></div>
-
-    <!-- Jalur Bendera Bergerak -->
-    <div class="wind-fx">
-        <div class="stripe" style="top: 15%; width: 40%; background: var(--ms-blue); animation-delay: 0s;"></div>
-        <div class="stripe" style="top: 45%; width: 55%; background: var(--ms-red); animation-delay: 3s;"></div>
-        <div class="stripe" style="top: 75%; width: 35%; background: var(--ms-yellow); animation-delay: 6s;"></div>
-        <div class="stripe" style="top: 90%; width: 60%; background: #ffffff; animation-delay: 1.5s;"></div>
-    </div>
-
-    <header class="header-logos">
+    <header id="t-header">
         <div class="logo-group">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Coat_of_arms_of_Malaysia.svg" alt="Jata Negara">
-            <img src="https://github.com/ttv4u1/KP/raw/main/DVS.svg" alt="Logo DVS">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Coat_of_arms_of_Malaysia.svg">
+            <img src="https://github.com/ttv4u1/KP/raw/main/DVS.svg">
         </div>
-        <!-- Logo Penguatkuasa -->
         <div class="logo-group">
-             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" alt="Logo Penguatkuasa">
+            <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
         </div>
     </header>
 
-    <main class="container">
-        <!-- GAMBAR PEGAWAI DI KIRI (BESAR) -->
-        <div class="left-panel">
-            <div class="gold-frame">
-                <!-- EDIT URL GAMBAR TUAN NIZAM DI SINI -->
-                <img src="https://github.com/ttv4u1/hb/raw/main/IMG_8303.jpeg" alt="TUAN MOHAMMAD NIZAM">
-            </div>
+    <main>
+        <div class="photo-side" id="t-photo">
+            <div class="gold-frame"><img src="https://github.com/ttv4u1/hb/raw/main/IMG_8303.jpeg"></div>
         </div>
-
-        <!-- MAKLUMAT DI KANAN -->
-        <div class="right-panel">
-            <div class="calligraphy-tahniah">Tahniah</div>
-            <div class="sub-header">Atas Kenaikan Pangkat</div>
-
-            <div class="info-card">
-                <div class="officer-name">TUAN MOHAMMAD NIZAM BIN ABDULLAH</div>
-                <div class="current-rank">Penolong Pegawai Penguat Kuasa (KP13)</div>
-
-                <div class="promo-details">
-                    <div class="promo-label">ATAS PEMANGKUAN KE JAWATAN:</div>
-                    <div class="new-rank">PEGAWAI PENGUAT KUASA GRED KP14</div>
-                    <div class="dept-info">
-                        Pengarah Bahagian Penguat Kuasa Veterinar<br>
-                        Ibu Pejabat Perkhidmatan Veterinar, Putrajaya
-                    </div>
-                    <span class="effective-date">BERKUAT KUASA PADA 20 APRIL 2026</span>
+        <div class="text-side">
+            <div class="tahniah-cursive" id="t-tahniah">Tahniah</div>
+            <div class="info-card" id="t-card">
+                <div class="reveal-up animate-up-1">
+                    <div class="name">TUAN MOHAMMAD NIZAM BIN ABDULLAH</div>
+                    <div class="rank-old">Penolong Pegawai Penguat Kuasa (KP13)</div>
                 </div>
-
-                <p class="wishes">
-                    "Semoga Tuan terus cemerlang dalam menerajui Bahagian Penguat Kuasa Veterinar demi memastikan kedaulatan undang-undang dan kebajikan haiwan terus terpelihara."
-                </p>
-
-                <div class="footer-sig">
-                    <strong>IKHLAS DARIPADA:</strong><br>
-                    WARGA BAHAGIAN PENGUAT KUASA VETERINAR<br>
-                    JABATAN PERKHIDMATAN VETERINAR (DVS)
+                <div class="promo-section reveal-up animate-up-2">
+                    <div class="label-promo">Atas Pemangkuan Ke Jawatan:</div>
+                </div>
+                <div class="reveal-up animate-up-3">
+                    <div class="new-rank">PEGAWAI PENGUAT KUASA GRED KP14</div>
+                    <div class="dept">Pengarah Bahagian Penguat Kuasa Veterinar<br>Ibu Pejabat Perkhidmatan Veterinar, Putrajaya</div>
+                    <span class="date">BERKUAT KUASA PADA 20 APRIL 2026</span>
+                </div>
+                <div class="reveal-up animate-up-4">
+                    <p class="wishes">"Semoga Tuan terus cemerlang dalam menerajui Bahagian Penguat Kuasa Veterinar demi kedaulatan undang-undang terus terpelihara."</p>
+                    <div class="footer"><strong>IKHLAS DARIPADA:</strong><br>WARGA BAHAGIAN PENGUAT KUASA VETERINAR, DVS</div>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        const btn = document.getElementById('btn-start');
-        const overlay = document.getElementById('start-overlay');
-        const sfx = document.getElementById('cinematic-sfx');
+        const header = document.getElementById('t-header');
+        const photo = document.getElementById('t-photo');
+        const tahniah = document.getElementById('t-tahniah');
+        const card = document.getElementById('t-card');
+        const sfx = document.getElementById('sfx');
 
-        btn.addEventListener('click', () => {
-            overlay.style.transition = '0.8s ease';
-            overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 800);
-            
-            // Mainkan Cinematic Sound
-            sfx.volume = 0.4;
+        function startShow() {
+            document.getElementById('controls').style.display = 'none';
+            header.classList.add('header-animate');
+            photo.classList.add('photo-animate');
+            tahniah.classList.add('tahniah-animate');
+            card.classList.add('card-animate');
             sfx.play();
-        });
+        }
+
+        async function startRecording() {
+            try {
+                // Minta izin rakam tab
+                const stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { displaySurface: "browser", width: 1920, height: 1080 },
+                    audio: true
+                });
+
+                const recorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9' });
+                const chunks = [];
+
+                recorder.ondataavailable = e => chunks.push(e.data);
+                recorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Hebahan_Tuan_Nizam.webm';
+                    a.click();
+                    stream.getTracks().forEach(track => track.stop());
+                    location.reload();
+                };
+
+                // Mulakan persembahan & rakaman
+                startShow();
+                recorder.start();
+
+                // Berhenti rakam selepas 15 saat (masa animasi tamat)
+                setTimeout(() => {
+                    recorder.stop();
+                }, 15000);
+
+            } catch (err) {
+                alert("Rakaman dibatalkan atau tidak disokong oleh pelayar web anda.");
+            }
+        }
     </script>
 </body>
 </html>
