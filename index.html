@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebahan Kenaikan Pangkat JPV</title>
+    <!-- Font Korporat -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2a44;
+            --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --msia-blue: #003399; --msia-red: #e21c21; --msia-yellow: #ffcc00;
+        }
+
+        body { margin: 0; background: #333; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+        /* Splash Screen */
+        #splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; transition: 0.8s; }
+        .btn-play { padding: 15px 40px; background: var(--gold); border: none; cursor: pointer; font-weight: bold; border-radius: 50px; color: #443415; }
+
+        /* Main Poster */
+        .poster { display: none; width: 95%; max-width: 1000px; background: #f4f4f4; position: relative; border: 8px solid transparent; border-image: var(--gold) 1; box-shadow: 0 40px 80px rgba(0,0,0,0.5); overflow: hidden; animation: fadeIn 1s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Layout */
+        .poster-grid { display: grid; grid-template-columns: 38% 62%; position: relative; z-index: 1; }
+        @media (max-width: 800px) { .poster-grid { grid-template-columns: 100%; } }
+
+        /* Photo Column (KIRI) */
+        .photo-column { background: #e8e8e8; padding: 40px; display: flex; justify-content: center; align-items: center; }
+        .profile-box { width: 100%; max-width: 300px; border: 10px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden; }
+        .profile-box img { width: 100%; display: block; }
+
+        /* Content Column (KANAN) */
+        .content-column { padding: 40px; text-align: center; }
+        .logo-header { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; align-items: center; }
+        .logo-header img { height: 55px; object-fit: contain; }
+
+        .tahniah { font-family: 'Great Vibes', cursive; font-size: clamp(60px, 8vw, 90px); color: #222; margin: 0; }
+        .tajuk-kecil { font-size: 13px; letter-spacing: 2px; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 20px; }
+
+        /* Banner Biru */
+        .info-box { background: var(--navy); color: white; padding: 30px; border-radius: 40px 0 40px 0; box-shadow: 8px 8px 0 var(--msia-yellow); margin-bottom: 20px; }
+        .nama { font-size: 22px; font-weight: 700; color: var(--msia-yellow); margin-bottom: 5px; }
+        .pangkat-lama { font-size: 14px; opacity: 0.9; }
+        .promo-text { font-size: 11px; color: #aaa; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .pangkat-baru { font-size: 18px; font-weight: 700; color: #fff; margin-top: 5px; }
+
+        .tarikh { color: var(--msia-red); font-weight: 700; font-size: 14px; margin: 15px 0; }
+        .mesej { font-size: 13px; line-height: 1.6; color: #444; margin-bottom: 30px; }
+        .ikhlas { font-size: 11px; font-weight: 700; color: var(--navy); }
+
+        /* Jalur Gemilang Footer */
+        .footer-stripes { position: absolute; bottom: 0; left: 0; width: 100%; height: 12px; display: flex; }
+        .stripe { flex: 1; height: 100%; }
+
+        /* Shimmer effect */
+        .shimmer { position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-20deg); animation: shine 6s infinite; }
+        @keyframes shine { 100% { left: 200%; } }
+    </style>
+</head>
+<body>
+
+    <div id="splash">
+        <button class="btn-play" onclick="mula()">LIHAT HEBAHAN RASMI</button>
+    </div>
+
+    <audio id="lagu" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="poster" id="kad">
+        <div class="shimmer"></div>
+        <div class="poster-grid">
+            
+            <!-- BAHAGIAN KIRI: GAMBAR PEGAWAI -->
+            <div class="photo-column">
+                <div class="profile-box">
+                    <!-- 1. LETAK GAMBAR ORANG DI SINI -->
+                    <img src="gambar_pegawai.jpg" alt="Tuan Mohammad Nizam">
+                </div>
+            </div>
+
+            <!-- BAHAGIAN KANAN: TEKS & LOGO -->
+            <div class="content-column">
+                <div class="logo-header">
+                    <!-- 2. LOGO JATA NEGARA -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Coat_of_arms_of_Malaysia.svg" alt="Jata Negara">
+                    
+                    <!-- 3. LETAK LOGO JABATAN VETERINAR DI SINI -->
+                    <img src="logo_dvs.png" alt="Logo DVS" onerror="this.src='https://via.placeholder.com/60?text=Logo+DVS'">
+                    
+                    <!-- 4. LETAK LOGO PENGUATKUASA DI SINI -->
+                    <img src="logo_penguatkuasa.png" alt="Logo Penguatkuasa" onerror="this.src='https://via.placeholder.com/60?text=Logo+Kuatkuasa'">
+                </div>
+
+                <p class="tahniah">Tahniah</p>
+                <div class="tajuk-kecil">Atas Kenaikan Pangkat</div>
+
+                <div class="info-box">
+                    <div class="nama">TUAN MOHAMMAD NIZAM BIN ABDULLAH</div>
+                    <div class="pangkat-lama">Penolong Pegawai Penguat Kuasa (KP13)</div>
+                    
+                    <div class="promo-text">ATAS PEMANGKUAN KE JAWATAN:</div>
+                    <div class="pangkat-baru">PEGAWAI PENGUAT KUASA GRED KP14</div>
+                    <div style="font-size: 13px; margin-top: 5px; font-weight: 600;">Pengarah Bahagian Penguat Kuasa Veterinar<br>Ibu Pejabat Perkhidmatan Veterinar, Putrajaya</div>
+                </div>
+
+                <div class="tarikh">BERKUAT KUASA PADA 20 APRIL 2026</div>
+
+                <div class="mesej">
+                    Semoga Tuan terus cemerlang dalam menerajui Bahagian Penguat Kuasa Veterinar demi memastikan kedaulatan undang-undang dan kebajikan haiwan terus terpelihara.
+                </div>
+
+                <div class="ikhlas">
+                    IKHLAS DARIPADA:<br>
+                    WARGA BAHAGIAN PENGUAT KUASA VETERINAR<br>
+                    JABATAN PERKHIDMATAN VETERINAR (DVS)
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-stripes">
+            <div class="stripe" style="background: var(--msia-blue);"></div>
+            <div class="stripe" style="background: #fff;"></div>
+            <div class="stripe" style="background: var(--msia-red);"></div>
+            <div class="stripe" style="background: #fff;"></div>
+            <div class="stripe" style="background: var(--msia-yellow);"></div>
+        </div>
+    </div>
+
+    <script>
+        function mula() {
+            document.getElementById('splash').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('splash').style.display = 'none';
+                document.getElementById('kad').style.display = 'block';
+                document.getElementById('lagu').play();
+            }, 800);
+        }
+    </script>
+</body>
+</html>
